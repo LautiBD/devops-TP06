@@ -45,7 +45,7 @@ def health():
     return jsonify({
         "status": "ok",
         "db": db_status,
-        "time": datetime.datetime.utcnow().isoformat()
+        "time": datetime.datetime.now(datetime.timezone.utc).isoformat()
     })
 
 
@@ -66,6 +66,9 @@ def get_notes():
 @app.route("/api/notes", methods=["POST"])
 def create_note():
     data = request.get_json() or {}
+    if "title" not in data or not data["title"]:
+        return jsonify({"error": "El título es obligatorio"}), 400
+
     conn = get_conn()
     cur = conn.cursor()
     cur.execute(
