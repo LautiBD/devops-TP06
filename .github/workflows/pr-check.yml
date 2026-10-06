@@ -1,4 +1,3 @@
-
 # ============================================
 # pr-check.yml — Checks rápidos en Pull Requests
 # ============================================
@@ -42,6 +41,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `${status} **PR Check** — ${{ job.status }}\nCommit: \`${{ github.sha }}\``
+              body: `${status} **PR Check** —${{ job.status }}\nCommit: \`${{ github.sha }}\``
             });
-
